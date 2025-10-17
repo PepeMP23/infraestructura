@@ -13,8 +13,8 @@
   <p id="respuesta" style="margin-top: 20px; font-size: 18px;"></p>
 
   <script>
-    // Cambia esto cuando tengas el backend desplegado en Render
-    const API_BASE = 'https://infraestructura-vjk5.onrender.com/api/mensaje';
+    // URL de tu backend en Render
+    const API_BASE = 'https://infraestructura-vjk5.onrender.com';
 
     document.getElementById('btn-get').onclick = async () => {
       try {
@@ -34,7 +34,7 @@
           body: JSON.stringify({ nombre: 'Pepe' })
         });
         const data = await res.json();
-        document.getElementById('respuesta').innerText = data.mensaje || JSON.stringify(data);
+        document.getElementById('respuesta').innerText = data.data.nombre || JSON.stringify(data);
       } catch (error) {
         document.getElementById('respuesta').innerText = 'Error: ' + error.message;
       }
