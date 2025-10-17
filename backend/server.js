@@ -1,20 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
+const express = require('express');
+const cors = require('cors');
 
-// Middleware
+const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rutas
-app.get("/api/mensaje", (req, res) => {
-  res.json({ mensaje: "Hola desde el backend 🚀" });
+app.get('/api/mensaje', (req, res) => {
+  res.json({ mensaje: 'Servidor de infraestructura funcionando correctamente 🚀' });
 });
 
-app.post("/api/datos", (req, res) => {
-  res.json({ recibido: true, data: req.body });
-});
-
-// Puerto dinámico (Render)
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`✅ Servidor en puerto ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en puerto ${PORT}`);
+});

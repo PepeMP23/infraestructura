@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Infraestructura - Frontend</title>
 </head>
 <body style="font-family: sans-serif; padding: 40px;">
@@ -10,33 +10,39 @@
   <button id="btn-get">GET mensaje</button>
   <button id="btn-post">POST datos</button>
 
-  <p id="respuesta" style="margin-top: 20px; font-size: 18px;"></p>
+  <pre id="respuesta" style="margin-top: 20px; font-size: 16px;"></pre>
 
   <script>
-    // 🚀 Cambiar esta URL cuando Render te dé tu backend HTTPS
-    const API_BASE = 'https://TU-BACKEND-EN-RENDER.onrender.com';
+    // 🚨 Aquí va la URL pública de tu backend en Render (cámbiala cuando Render te la dé)
+    const API_BASE = 'https://RENDER_BACKEND_URL';
 
     document.getElementById('btn-get').onclick = async () => {
+      const out = document.getElementById('respuesta');
+      out.textContent = 'Cargando...';
       try {
         const res = await fetch(`${API_BASE}/api/mensaje`);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        document.getElementById('respuesta').innerText = data.mensaje;
+        out.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
-        document.getElementById('respuesta').innerText = 'Error: ' + error.message;
+        out.textContent = 'Error: ' + error.message;
       }
     };
 
     document.getElementById('btn-post').onclick = async () => {
+      const out = document.getElementById('respuesta');
+      out.textContent = 'Cargando...';
       try {
         const res = await fetch(`${API_BASE}/api/datos`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nombre: 'Puma' })
         });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
-        document.getElementById('respuesta').innerText = JSON.stringify(data);
+        out.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
-        document.getElementById('respuesta').innerText = 'Error: ' + error.message;
+        out.textContent = 'Error: ' + error.message;
       }
     };
   </script>
