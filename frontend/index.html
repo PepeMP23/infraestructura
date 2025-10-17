@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Frontend - Conectado al Backend</title>
+  <meta charset="utf-8">
+  <title>Infraestructura - Frontend</title>
 </head>
 <body style="font-family: sans-serif; padding: 40px;">
   <h1>Frontend conectado al backend</h1>
@@ -13,8 +13,8 @@
   <p id="respuesta" style="margin-top: 20px; font-size: 18px;"></p>
 
   <script>
-    // URL del backend - deja localhost para pruebas locales
-    const API_BASE = 'https://671cc80a1113.ngrok-free.app';
+    // 🚀 Cambiar esta URL cuando Render te dé tu backend HTTPS
+    const API_BASE = 'https://TU-BACKEND-EN-RENDER.onrender.com';
 
     document.getElementById('btn-get').onclick = async () => {
       try {
@@ -31,10 +31,10 @@
         const res = await fetch(`${API_BASE}/api/datos`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre: 'Pepe' })
+          body: JSON.stringify({ nombre: 'Puma' })
         });
         const data = await res.json();
-        document.getElementById('respuesta').innerText = data.mensaje || JSON.stringify(data);
+        document.getElementById('respuesta').innerText = JSON.stringify(data);
       } catch (error) {
         document.getElementById('respuesta').innerText = 'Error: ' + error.message;
       }
